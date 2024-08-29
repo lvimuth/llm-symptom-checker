@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Layout from "./components/Layout";
+import SymptomForm from "./components/SymptomForm";
+import DiagnosisResult from "./components/DiagnosisResult";
 
 function App() {
+  const [diagnosis, setDiagnosis] = useState("");
+
+  const handleSymptomSubmit = (symptoms) => {
+    // Placeholder for API call to get diagnosis
+    const result = `Based on your symptoms "${symptoms}", here are some possible conditions...`;
+    setDiagnosis(result);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <SymptomForm onSubmit={handleSymptomSubmit} />
+      {diagnosis && <DiagnosisResult result={diagnosis} />}
+    </Layout>
   );
 }
 
